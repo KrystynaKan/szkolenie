@@ -90,7 +90,7 @@ Central_America =    ['Cuba', 'Jamaica', 'Haiti', 'Dominican-Republic', 'Nicarag
 South_America =      ['Trinadad&Tobago', 'Columbia', 'Ecuador', 'Peru']
 continents = [Europe, Asia, North_America,Central_America,South_America]
 continents_labels = ['Europe', 'Asia', 'North_America','Central_America','South_America']
-data_adult['continent'] = 1
+data_adult['continent'] = 'NaN'
 # print(continents_labels[1])
 # print(data_adult['country'].iloc[1])
 
@@ -99,9 +99,15 @@ for i in range(len(data_adult)):
         if data_adult['country'].iloc[i] in j:
             data_adult['continent'].iloc[i] = continents_labels[(continents.index(j))]
 
-print(data_adult[data_adult['continent'] == 1].loc[:,['country','continent']])
-print(data_adult.groupby('continent').agg({'continent':'count'}))
+# print(data_adult[data_adult['continent'] == 1].loc[:,['country','continent']])
+# print(data_adult.groupby('continent').agg({'continent':'count'}))
+# print(data_adult)
 # print(data_adult.groupby('country').agg({'country':'count'}))
+
+
+compression_opts = dict(method= 'zip', archive_name = 'out.csv')
+data_adult.to_csv('out.zip', index=False,
+          compression=compression_opts)
 
 
 
